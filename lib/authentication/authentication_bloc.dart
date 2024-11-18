@@ -24,11 +24,36 @@ class AuthenticationBloc
   FutureOr<void> _onSubscriptionRequested(
       AuthenticationSubscriptionRequested event,
       Emitter<AuthenticationState> emit) async{
-      return emit.onEach(stream, onData: onData)
+      return emit.onEach( authenticationRepository.status, onData: (status) async {
+        switch(status) {
+          case AuthenticationStatus.unauthenticated:
+            return emit(const AuthenticationState.unAuthenticated());
+          case AuthenticationStatus.authenticated:
+            final user = await _tryGetUser();
+            return emit(
+                user!=null
+                    ? AuthenticationState.authenticated(user)
+                    : const AuthenticationState.unAuthenticated()
+            );
+          case AuthenticationStatus.unknown:
+            return emit(const AuthenticationState.unknown());
+        }
+      },
+      onError: addError
+      );
   }
 
   FutureOr<void> _onLogoutPressed(
       AuthenticationLogoutPressed event, Emitter<AuthenticationState> emit) {
       authenticationRepository.logout();
+  }
+
+  Future<User?> _tryGetUser() async {
+    try {
+      final user = await userRepository.getUser();
+      return user;
+    }catch(_){
+      return null;
+    }
   }
 }

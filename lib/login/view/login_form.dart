@@ -1,11 +1,29 @@
+import 'package:demo2/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const LoginButton();
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {},
+      child: const Align(
+        alignment: Alignment(0, -1 / 3),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            UserInput(),
+            Padding(padding: EdgeInsets.all(12)),
+            PasswordInput(),
+            Padding(padding: EdgeInsets.all(12)),
+            LoginButton()
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -14,8 +32,54 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: () {
+    final isInProgressOrSuccess = context.select(
+      (LoginBloc bloc) => bloc.state.status.isInProgressOrSuccess,
+    );
+    if (isInProgressOrSuccess) return const CircularProgressIndicator();
+    final isValid = context.select((LoginBloc bloc) => bloc.state.isValid);
+    return ElevatedButton(
+        onPressed: isValid
+            ? () => {context.read<LoginBloc>().add(const LoginSubmitted())}
+            : null,
+        child: const Text("Login"));
+  }
+}
 
-    }, child: const Text("login"));
+class UserInput extends StatelessWidget {
+  const UserInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError = context.select(
+      (LoginBloc bloc) => bloc.state.password.displayError,
+    );
+    return TextField(
+      onChanged: (username) {
+        context.read<LoginBloc>().add(LoginUserNameChanged(username));
+      },
+      decoration: InputDecoration(
+          labelText: "Username",
+          errorText: displayError != null ? 'Invalid username' : null),
+    );
+  }
+}
+
+class PasswordInput extends StatelessWidget {
+  const PasswordInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError = context.select(
+      (LoginBloc bloc) => bloc.state.username.displayError,
+    );
+    return TextField(
+      key: const Key('loginForm_passwordInput_textField'),
+      onChanged: (password) {
+        context.read<LoginBloc>().add(LoginPasswordChanged(password));
+      },
+      decoration: InputDecoration(
+          labelText: "password",
+          errorText: displayError != null ? 'invalid password' : null),
+    );
   }
 }

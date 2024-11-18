@@ -42,6 +42,7 @@ dependencies:
     path: packages/authentication_repo
   user_repo:
     path: packages/user_repo
+  formz: ^0.8.0
 
 dev_dependencies:
   flutter_test:

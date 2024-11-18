@@ -40,7 +40,8 @@ class _UserId extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //this line will trigger updates if the user id changes.
-    final userId = context.select((AuthenticationBloc bloc) => bloc.state);
-    return const Text('userID: $userId ');
+    final userId =
+        context.select((AuthenticationBloc bloc) => bloc.state.user.id);
+    return Text('userID: $userId ');
   }
 }
