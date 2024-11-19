@@ -43,6 +43,7 @@ dependencies:
   user_repo:
     path: packages/user_repo
   formz: ^0.8.0
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:
