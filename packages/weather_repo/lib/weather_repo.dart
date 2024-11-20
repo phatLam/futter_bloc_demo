@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library open_meteo_api;
+library;
 
+export 'src/weather_repo_base.dart';
 export 'src/models/models.dart';
-export 'src/open_meteo_api_client.dart';

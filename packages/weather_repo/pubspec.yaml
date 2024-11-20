@@ -1,0 +1,22 @@
+name: weather_repo
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.5.3
+
+# Add regular dependencies here.
+dependencies:
+  equatable: ^2.0.5
+  json_annotation: ^4.9.0
+  open_meteo_api:
+    path: ../open_meteo_api
+  # path: ^1.8.0
+
+dev_dependencies:
+  build_runner: ^2.4.13
+  json_serializable: ^6.9.0
+  lints: ^4.0.0
+  mocktail: ^1.0.4
+  test: ^1.24.0
