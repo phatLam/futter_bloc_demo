@@ -9,10 +9,14 @@ class WeatherRepo {
   WeatherRepo({OpenMeteoApiClient? weatherApiClient})
       : _weatherApiClient = weatherApiClient ?? OpenMeteoApiClient();
 
-  Future<Weather>getWeather(String city) async{
+  Future<Weather> getWeather(String city) async {
     final location = await _weatherApiClient.locationSearch(city);
-    final weather = await _weatherApiClient.getWeather(latitude: location.latitude, longitude: location.longitude);
-    return Weather(location: location.name, temperature: weather.temperature, condition: weather.weatherCode.toInt().toCondition);
+    final weather = await _weatherApiClient.getWeather(
+        latitude: location.latitude, longitude: location.longitude);
+    return Weather(
+        location: location.name,
+        temperature: weather.temperature,
+        condition: weather.weatherCode.toInt().toCondition);
   }
 }
 
