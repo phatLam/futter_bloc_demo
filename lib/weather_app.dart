@@ -3,9 +3,11 @@ import 'package:demo2/weather/view/weather_page.dart';
 import 'package:demo2/weather/widget/weather_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_repo/weather_repo.dart';
 
+import 'generated/l10n.dart';
 import 'setting/setting_page.dart';
 
 class WeatherApp extends StatelessWidget {
@@ -28,6 +30,14 @@ class WeatherAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: const Locale('vi', "VN"),
+      supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
+
 class WeatherEmpty extends StatelessWidget {
   const WeatherEmpty({super.key});
 
@@ -11,7 +13,7 @@ class WeatherEmpty extends StatelessWidget {
       children: [
         const Text('🏙️', style: TextStyle(fontSize: 64)),
         Text(
-          'Please Select a City!',
+          S.of(context).pageWeather_des_empty,
           style: theme.textTheme.headlineSmall,
         ),
       ],

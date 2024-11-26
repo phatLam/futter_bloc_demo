@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
+
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
 
@@ -27,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('City Search'),
+        title: Text(S.of(context).pageSearch_title),
       ),
       body: Row(
         children: [
