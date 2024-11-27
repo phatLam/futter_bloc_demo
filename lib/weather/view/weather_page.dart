@@ -2,6 +2,7 @@ import 'package:demo2/search/search_page.dart';
 import 'package:demo2/weather/cubit/weather_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hello/hello.dart';
 
 import '../widget/weather_populated.dart';
 import '../widget/widgets.dart';
@@ -38,7 +39,7 @@ class WeatherPage extends StatelessWidget {
         child:
         BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
           return switch (state.status) {
-            WeatherStatus.initial => const WeatherEmpty(),
+            WeatherStatus.initial => const Hello(),
             WeatherStatus.loading => const WeatherLoading(),
             WeatherStatus.failure => const WeatherError(),
             WeatherStatus.success =>
