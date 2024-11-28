@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hello/l10n/app_localizations.dart';
 import 'package:weather_repo/weather_repo.dart';
 
 import 'generated/l10n.dart';
@@ -35,8 +36,8 @@ class WeatherAppView extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate,
       ],
-      locale: const Locale('vi', "VN"),
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(

@@ -1,6 +1,9 @@
 library hello;
 
 import 'package:flutter/material.dart';
+import 'package:hello/l10n/app_localizations.dart';
+
+
 
 
 class Hello extends StatefulWidget {
@@ -13,6 +16,6 @@ class Hello extends StatefulWidget {
 class _HelloState extends State<Hello> {
   @override
   Widget build(BuildContext context) {
-    return const Text("data");
+    return Text(AppLocalizations.of(context)!.hello);
   }
 }
