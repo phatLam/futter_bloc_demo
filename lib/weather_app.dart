@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hello/hello.dart';
 import 'package:hello/l10n/app_localizations.dart';
 import 'package:weather_repo/weather_repo.dart';
 
@@ -49,7 +50,7 @@ class WeatherAppView extends StatelessWidget {
       routes: {
         '/settings': (context) => const SettingPage(),
       },
-      home: const WeatherPage(),
+      home: const Hello(),
     );
   }
 }
